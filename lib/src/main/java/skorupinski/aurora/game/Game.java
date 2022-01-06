@@ -2,8 +2,10 @@ package skorupinski.aurora.game;
 
 import java.awt.Color;
 
+import skorupinski.aurora.events.Mouse;
+import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.graphics.Painter;
-import skorupinski.aurora.math.Vector2i;
+import skorupinski.aurora.math.Vector2;
 
 public class Game {
 
@@ -17,6 +19,8 @@ public class Game {
 
     private static GameRenderer renderer = null;
 
+    private static final Mouse mouse = new Mouse();
+
     private static final Color BACKGROUND = Color.DARK_GRAY;
 
     private Game() {}
@@ -24,10 +28,11 @@ public class Game {
     public static void init(Window gameWindow, GameConfig config) {
         window = gameWindow;
         window.setup();
+        window.setMouse(mouse);
 
         gameLoop = new GameLoop(config.fps, config.tps);
         
-        renderer = new GameRenderer();
+        renderer = new GameRenderer(window.getCanvas());
 
         if(eventHandler != null) {
             eventHandler.onStart();
@@ -44,8 +49,12 @@ public class Game {
     }
 
     public static void setupBackground(Painter painter) {
+        Rectangle background = new Rectangle(
+            new Vector2(0, 0), 
+            window.getSize().toVector2()
+        );
         painter.color(BACKGROUND);
-        painter.fillRect(new Vector2i(0, 0), window.getMaximumSize());
+        painter.fill(background);
     }
 
     protected static void frame() {
@@ -69,25 +78,36 @@ public class Game {
         eventHandler = gameEventHandler;
     } 
 
+    private static void notInitialized() {
+        throw new IllegalStateException("Game not initialized.");
+    }
+
     public static Window window() {
         if(window == null) {
-            throw new IllegalStateException("Game not initialized.");
+            notInitialized();
         }
         return window;
     }
 
     public static GameLoop loop() {
         if(gameLoop == null) {
-            throw new IllegalStateException("Game not initialized.");
+            notInitialized();
         }
         return gameLoop;
     }
 
     public static GameRenderer renderer() {
         if(renderer == null) {
-            throw new IllegalStateException("Game not initialized.");
+            notInitialized();
         }
         return renderer;
+    }
+
+    public static Mouse mouse() {
+        if(mouse == null) {
+            notInitialized();
+        }
+        return mouse;
     }
     
 }

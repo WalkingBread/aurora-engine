@@ -41,7 +41,7 @@ public class Vector3 {
         return distanceFrom(new Vector3(0, 0, 0));
     }
 
-    public float dotProduct(Vector3 v) {
+    public float dot(Vector3 v) {
         return (x * v.x) + (y * v.y) + (z * v.z);
     }
 

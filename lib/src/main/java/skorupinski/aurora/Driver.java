@@ -1,16 +1,15 @@
 package skorupinski.aurora;
 
 import java.awt.Color;
-import java.nio.file.Path;
 
-import skorupinski.aurora.audio.Audio;
 import skorupinski.aurora.game.Game;
 import skorupinski.aurora.game.GameConfig;
 import skorupinski.aurora.game.GameEventHandler;
 import skorupinski.aurora.game.Window;
+import skorupinski.aurora.geometry.Circle;
+import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.graphics.Painter;
-import skorupinski.aurora.graphics.sprites.Sprite;
-import skorupinski.aurora.math.Vector2i;
+import skorupinski.aurora.math.Vector2;
 
 public class Driver {
 
@@ -19,30 +18,32 @@ public class Driver {
 
         window.setTitle("test");
         window.setSize(400, 400);
-        window.setFixedSize();
 
         GameConfig config = new GameConfig();
 
         config.fps(60);
         config.tps(60);
 
-        Sprite sprite = new Sprite(Path.of("", "close.png"));
-        Audio audio = new Audio(Path.of("", "step.wav"));
-        audio.setVolume(0.3f);
 
+        Circle circle = new Circle(new Vector2(100, 100), 200);
+        Rectangle rect = new Rectangle(new Vector2(100, 100), new Vector2(100, 100));
+        MyShape s = new MyShape();
+ 
         GameEventHandler handler = new GameEventHandler() {
 
             @Override
             public void onTick() {
-                System.out.println(Game.loop().getFps());
+                //System.out.println(Game.loop().getFps());
             }
 
             @Override
             public void onFrame(Painter painter) {
                 painter.color(Color.CYAN);
-                painter.fillRect(0, 0, 50, 50);
+                //painter.lineWidth(20);
+                //painter.fillRect(0, 0, 50, 50);
 
-                painter.sprite(sprite, new Vector2i(0, 0), 80);
+                //painter.draw(circle);
+                painter.draw(s);
             }
 
             @Override

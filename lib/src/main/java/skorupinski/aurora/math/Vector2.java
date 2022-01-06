@@ -36,7 +36,14 @@ public class Vector2 {
         );
     }
 
-    public float dotProduct(Vector2 v) {
+    public Vector2 multiply(float n) {
+        return new Vector2(
+            x * n, 
+            y * n
+        );
+    }
+
+    public float dot(Vector2 v) {
         return (x * v.x) + (y * v.y);
     }
 

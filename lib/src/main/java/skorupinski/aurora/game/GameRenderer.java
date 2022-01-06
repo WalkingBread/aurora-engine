@@ -10,8 +10,7 @@ public class GameRenderer {
     private BufferStrategy bs;
     private Graphics2D graphics;
     
-    GameRenderer() {
-        Canvas canvas = Game.window().getCanvas();
+    GameRenderer(Canvas canvas) {
         canvas.createBufferStrategy(3);
         bs = canvas.getBufferStrategy();
         graphics = (Graphics2D) bs.getDrawGraphics();
