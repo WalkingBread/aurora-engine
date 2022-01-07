@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceManager {
+
+    private ResourceManager() {}
     
     private static final List<Loader> loaders = new ArrayList<>() {{
         add(new ImageLoader());

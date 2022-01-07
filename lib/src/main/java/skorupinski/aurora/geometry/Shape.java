@@ -14,10 +14,17 @@ public abstract class Shape {
         position = new Vector2(x, y);
     }
 
-    public abstract boolean collidesWith(Vector2 point);
+    public boolean collidesWith(Shape shape) {
+        return CollisionDetector.collide(this, shape);
+    }
+
+    public boolean collidesWith(Vector2 point) {
+        return CollisionDetector.collide(this, new Point(point));
+    }
 
     public abstract Vector2 getMid();
 
     public abstract Vector2[] getVertices();
 
+    protected abstract Vector2[] getAxes();
 }

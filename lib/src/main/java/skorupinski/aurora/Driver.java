@@ -26,7 +26,7 @@ public class Driver {
 
 
         Circle circle = new Circle(new Vector2(100, 100), 200);
-        Rectangle rect = new Rectangle(new Vector2(100, 100), new Vector2(100, 100));
+        Rectangle rect = new Rectangle(new Vector2(-1, -1), new Vector2(100, 100));
         MyShape s = new MyShape();
  
         GameEventHandler handler = new GameEventHandler() {
@@ -34,6 +34,9 @@ public class Driver {
             @Override
             public void onTick() {
                 //System.out.println(Game.loop().getFps());
+                if(rect.collidesWith(s)) {
+                    System.out.println(true);
+                }
             }
 
             @Override
@@ -43,6 +46,7 @@ public class Driver {
                 //painter.fillRect(0, 0, 50, 50);
 
                 //painter.draw(circle);
+                painter.draw(rect);
                 painter.draw(s);
             }
 

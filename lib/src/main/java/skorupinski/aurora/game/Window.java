@@ -59,7 +59,15 @@ public class Window {
     }
 
     public Vector2i getSize() {
-        return new Vector2i(window.getWidth(), window.getHeight());
+        return new Vector2i(getWidth(), getHeight());
+    }
+
+    public int getWidth() {
+        return window.getWidth();
+    }
+
+    public int getHeight() {
+        return window.getHeight();
     }
 
     private void addCloseListener() {

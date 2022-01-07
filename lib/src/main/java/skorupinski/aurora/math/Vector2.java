@@ -43,6 +43,27 @@ public class Vector2 {
         );
     }
 
+    public Vector2 multiply(Vector2 v) {
+        return new Vector2(
+            x * v.x, 
+            y * v.y
+        );
+    }
+
+    public Vector2 divide(float n) {
+        return new Vector2(
+            x / n, 
+            y / n
+        );
+    }
+
+    public Vector2 divide(Vector2 v) {
+        return new Vector2(
+            x / v.x, 
+            y / v.y
+        );
+    }
+
     public float dot(Vector2 v) {
         return (x * v.x) + (y * v.y);
     }
@@ -52,6 +73,10 @@ public class Vector2 {
             x * (1 / getLength()),
             y * (1 / getLength())
         );
+    }
+
+    public Vector2 normal() {
+        return new Vector2(-y, x);
     }
 
     public Vector2i toVector2i() {

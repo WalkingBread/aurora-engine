@@ -49,5 +49,10 @@ public class Circle extends Shape {
 
         return vertices;
     }
+
+    @Override
+    protected Vector2[] getAxes() {
+        return new Vector2[]{};
+    }
     
 }
