@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-
 import java.awt.image.BufferedImage;
 
 public class ImageLoader implements Loader {

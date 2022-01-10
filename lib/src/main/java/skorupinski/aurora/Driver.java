@@ -28,7 +28,8 @@ public class Driver {
         Circle circle = new Circle(new Vector2(100, 100), 200);
         Rectangle rect = new Rectangle(new Vector2(-1, -1), new Vector2(100, 100));
         MyShape s = new MyShape();
- 
+
+
         GameEventHandler handler = new GameEventHandler() {
 
             @Override
