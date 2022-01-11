@@ -10,14 +10,12 @@ import skorupinski.aurora.math.Vector2;
 
 public abstract class Renderable<T extends Position> {
     protected T position;
-    protected Vector2 boxSize;
 
-    public Renderable(T position, Vector2 boxSize, Camera camera) {
+    public Renderable(T position) {
         this.position = position;
-        this.boxSize = boxSize;
     }
 
-    public abstract void draw(Painter painter, Vector2 position);
+    public abstract void draw(Painter painter, Vector2 position, Camera camera);
 
     public void display(Camera camera, Painter painter) {
         Vector2 displayPosition = null;
@@ -35,12 +33,13 @@ public abstract class Renderable<T extends Position> {
             displayPosition = d.vector();
         }
 
-        draw(painter, displayPosition);
+        draw(painter, displayPosition, camera);
     }
 
-    public Rectangle getRectangle() {
-        Vector2 pos = ((Display) position).vector();
-        return new Rectangle(pos, boxSize);
+    public abstract Rectangle getRectangle();
+
+    public T getPosition() {
+        return position;
     }
     
 }

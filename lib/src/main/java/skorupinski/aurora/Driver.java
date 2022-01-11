@@ -8,8 +8,11 @@ import skorupinski.aurora.game.GameEventHandler;
 import skorupinski.aurora.game.Window;
 import skorupinski.aurora.geometry.Circle;
 import skorupinski.aurora.geometry.Rectangle;
+import skorupinski.aurora.geometry.isometric.Cuboid;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
+import skorupinski.aurora.math.Vector3;
+import skorupinski.aurora.rendering.Camera;
 
 public class Driver {
 
@@ -24,10 +27,14 @@ public class Driver {
         config.fps(60);
         config.tps(60);
 
+        Game.init(window, config);
 
         Circle circle = new Circle(new Vector2(100, 100), 200);
         Rectangle rect = new Rectangle(new Vector2(-1, -1), new Vector2(100, 100));
-        MyShape s = new MyShape();
+        Cuboid c = new Cuboid(new Vector3(0, 0, 0), new Vector3(100, 100, 100));
+
+        Camera camera = new Camera();
+        camera.focusOn(c.getPosition().toDisplayPosition(camera).vector());
 
 
         GameEventHandler handler = new GameEventHandler() {
@@ -35,9 +42,6 @@ public class Driver {
             @Override
             public void onTick() {
                 //System.out.println(Game.loop().getFps());
-                if(rect.collidesWith(s)) {
-                    System.out.println(true);
-                }
             }
 
             @Override
@@ -48,7 +52,8 @@ public class Driver {
 
                 //painter.draw(circle);
                 painter.draw(rect);
-                painter.draw(s);
+
+                c.display(camera, painter);
             }
 
             @Override
@@ -64,6 +69,6 @@ public class Driver {
         };
     
         Game.addGameEventHandler(handler);
-        Game.init(window, config);
+        Game.start();
     }
 }

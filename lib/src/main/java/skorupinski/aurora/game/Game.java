@@ -33,11 +33,12 @@ public class Game {
         gameLoop = new GameLoop(config.fps, config.tps);
         
         renderer = new GameRenderer(window.getCanvas());
+    }
 
+    public static void start() {
         if(eventHandler != null) {
             eventHandler.onStart();
         }
-
         gameLoop.start();
     }
 
