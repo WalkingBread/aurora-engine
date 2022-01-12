@@ -9,7 +9,9 @@ public class CollisionDetector {
     private CollisionDetector() {}
 
     private static class Projection {
+        
         private float min;
+
         private float max;
     
         public Projection(float min, float max) {

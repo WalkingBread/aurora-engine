@@ -14,20 +14,9 @@ public class Isometric extends Position {
         position = new Vector3(x, y, z);
     }
 
-    /*public void rotateX(MapPosition rotationMid, float angle) {
-        Vector3 rotated = vector().rotateX(rotationMid.vector(), angle);
-        set(rotated);
+    public void rotate(Isometric rotationMid, Vector3 angles) {
+        set(position.rotate(rotationMid.vector(), angles));
     }
-
-    public void rotateY(MapPosition rotationMid, float angle) {
-        Vector3 rotated = vector().rotateY(rotationMid.vector(), angle);
-        set(rotated);
-    }
-
-    public void rotateZ(MapPosition rotationMid, float angle) {
-        Vector3 rotated = vector().rotateZ(rotationMid.vector(), angle);
-        set(rotated);
-    }*/
 
     @Override
     public Vector3 vector() {

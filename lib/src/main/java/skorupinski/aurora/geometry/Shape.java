@@ -26,5 +26,18 @@ public abstract class Shape {
 
     public abstract Vector2[] getVertices();
 
-    protected abstract Vector2[] getAxes();
+    protected Vector2[] getAxes() {
+        Vector2[] vertices = getVertices();
+        Vector2[] axes = new Vector2[vertices.length];
+
+        for(int i = 0; i < axes.length; i++) {
+            Vector2 v = new Vector2(
+                vertices[i].x - vertices[i + 1 == vertices.length ? 0 : i + 1].x,
+                vertices[i].y - vertices[i + 1 == vertices.length ? 0 : i + 1].y
+            );
+    
+            axes[i] = v.normal().normalize();
+        }
+        return axes;
+    }
 }

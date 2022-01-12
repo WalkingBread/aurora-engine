@@ -10,6 +10,11 @@ public class Vector2i {
         this.x = x;
         this.y = y;
     }
+
+    public Vector2i() {
+        x = 0;
+        y = 0;
+    }
     
     public Vector2 toVector2() {
         return new Vector2(x, y);

@@ -14,6 +14,12 @@ public class Vector3 {
         this.z = z;
     }
 
+    public Vector3() {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+
     public float distanceFrom(Vector3 pos) {
         Vector3 distance = substract(pos);
         float distance2d = Maths.pitagorean(distance.x, distance.y);
@@ -59,35 +65,14 @@ public class Vector3 {
         });
     }
 
-    public Vector3 rotateX(Vector3 rotationMid, float angle) {
+    public Vector3 rotate(Vector3 rotationMid, Vector3 angles) {
         Vector3 temp = rotationMid.substract(this);
         Matrix m = temp.toMatrix();
 
-        m = Constants.getXRotationMatrix(angle).multiply(m);
-        return new Vector3(
-            m.getValueAt(0, 0), 
-            m.getValueAt(1, 0), 
-            m.getValueAt(2, 0)
-        );
-    }
+        m = Constants.getXRotationMatrix(angles.x).multiply(m);
+        m = Constants.getYRotationMatrix(angles.y).multiply(m);
+        m = Constants.getZRotationMatrix(angles.z).multiply(m);
 
-    public Vector3 rotateY(Vector3 rotationMid, float angle) {
-        Vector3 temp = rotationMid.substract(this);
-        Matrix m = temp.toMatrix();
-
-        m = Constants.getYRotationMatrix(angle).multiply(m);
-        return new Vector3(
-            m.getValueAt(0, 0), 
-            m.getValueAt(1, 0), 
-            m.getValueAt(2, 0)
-        );
-    }
-
-    public Vector3 rotateZ(Vector3 rotationMid, float angle) {
-        Vector3 temp = rotationMid.substract(this);
-        Matrix m = temp.toMatrix();
-
-        m = Constants.getZRotationMatrix(angle).multiply(m);
         return new Vector3(
             m.getValueAt(0, 0), 
             m.getValueAt(1, 0), 

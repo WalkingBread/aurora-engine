@@ -10,16 +10,20 @@ import skorupinski.aurora.rendering.Camera;
 import java.awt.Color;
 
 public class Cuboid extends Object3D {
+    
     public Vector3 size;
 
     public Cuboid(Vector3 position, Vector3 size) {
-        super(new Isometric(position));
+        super(
+            new Isometric(position), 
+            new Isometric(position.add(new Vector3(0, 0, size.z / 2)))
+        );
 
         this.size = size;
     }
 
     @Override
-    public Isometric[] getVertices() {
+    public Isometric[] getInitialVertexPositions() {
         Vector3 m = position.vector();
 
         return new Isometric[] {
@@ -47,6 +51,7 @@ public class Cuboid extends Object3D {
             painter.line(a.toVector2i(), b.toVector2i());
             painter.line(c.toVector2i(), d.toVector2i());
             painter.line(a.toVector2i(), c.toVector2i());
+
         }
 
         painter.color(Color.BLUE);

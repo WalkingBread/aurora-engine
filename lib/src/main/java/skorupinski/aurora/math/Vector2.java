@@ -11,6 +11,11 @@ public class Vector2 {
         this.y = y;
     }
 
+    public Vector2() {
+        x = 0;
+        y = 0;
+    }
+
     public float distanceFrom(Vector2 pos) {
         Vector2 distance = substract(pos);
 

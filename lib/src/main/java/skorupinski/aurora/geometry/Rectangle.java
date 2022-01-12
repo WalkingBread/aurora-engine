@@ -2,7 +2,7 @@ package skorupinski.aurora.geometry;
 
 import skorupinski.aurora.math.Vector2;
 
-public class Rectangle extends Polygon {
+public class Rectangle extends Shape {
 
     public Vector2 size;
 
