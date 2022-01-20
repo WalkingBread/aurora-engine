@@ -1,7 +1,9 @@
 package skorupinski.aurora.math;
 
 public class Range {
+    
     private float lower;
+
     private float upper;
 
     public Range(float lower, float upper) {

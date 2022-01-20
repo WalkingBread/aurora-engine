@@ -5,10 +5,12 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.awt.Canvas;
 
 import javax.swing.JFrame;
 
+import skorupinski.aurora.events.Keyboard;
 import skorupinski.aurora.events.Mouse;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
@@ -79,6 +81,17 @@ public class Window {
         });
     }
 
+    private void updateResizeFactor() {
+        Vector2 newSize = getSize().toVector2();
+
+        resizeFactor = new Vector2(
+            oldSize.x / newSize.x,
+            oldSize.y / newSize.y
+        );
+
+        oldSize = newSize;
+    }
+
     private void createResizeListener() {
         oldSize = getSize().toVector2();
         resizeFactor = new Vector2(1, 1);
@@ -86,16 +99,15 @@ public class Window {
         window.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent componentEvent) {
-                Vector2 newSize = getSize().toVector2();
-
-                resizeFactor = new Vector2(
-                    oldSize.x / newSize.x,
-                    oldSize.y / newSize.y
-                );
-        
-                oldSize = newSize;
+                updateResizeFactor();
             }
         });
+
+        window.addWindowStateListener(new WindowStateListener() {
+            public void windowStateChanged(WindowEvent e) {
+               updateResizeFactor();
+            }
+         });
     } 
 
     public Vector2 getResizeFactor() {
@@ -113,6 +125,10 @@ public class Window {
     void setMouse(Mouse mouse) {
         canvas.addMouseListener(mouse);
         canvas.addMouseMotionListener(mouse);
+    }
+
+    void setKeyboard(Keyboard keyboard) {
+        canvas.addKeyListener(keyboard);
     }
 
     Canvas getCanvas() {

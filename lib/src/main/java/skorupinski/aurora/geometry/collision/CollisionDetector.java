@@ -1,7 +1,8 @@
-package skorupinski.aurora.geometry;
+package skorupinski.aurora.geometry.collision;
 
 import java.lang.reflect.Array;
 
+import skorupinski.aurora.geometry.Shape;
 import skorupinski.aurora.math.Vector2;
 
 public class CollisionDetector {

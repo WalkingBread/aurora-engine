@@ -69,12 +69,15 @@ public class Mouse implements MouseListener, MouseMotionListener {
         float x = e.getX();
         float y = e.getY();
 
+        MouseButton button = MouseButton.getButton(e.getButton());
+
         Vector2 move = new Vector2(x, y).substract(pressPosition);
 
         setPosition(x, y);
 
         interactiveManager.checkInteractivesHovered();
         interactiveManager.dragForAll(move);
+        interactiveManager.clickForAll(button);
     }
 
     @Override
@@ -122,6 +125,5 @@ public class Mouse implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseExited(MouseEvent e) {}
-
-
+    
 }

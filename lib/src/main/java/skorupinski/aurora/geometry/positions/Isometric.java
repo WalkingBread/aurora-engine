@@ -1,6 +1,7 @@
 package skorupinski.aurora.geometry.positions;
 
 import skorupinski.aurora.rendering.Camera;
+import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector3;
 
 public class Isometric extends Position {
@@ -34,5 +35,12 @@ public class Isometric extends Position {
     public Display toDisplayPosition(Camera camera) {
         return toGlobalPosition().toDisplayPosition(camera);
     }
+
+    public Vector2 vectorXY() {
+        return new Vector2(
+            position.x,
+            position.y
+        );
+    } 
 
 }

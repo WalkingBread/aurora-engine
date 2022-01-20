@@ -2,6 +2,7 @@ package skorupinski.aurora.game;
 
 import java.awt.Color;
 
+import skorupinski.aurora.events.Keyboard;
 import skorupinski.aurora.events.Mouse;
 import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.graphics.Painter;
@@ -19,7 +20,9 @@ public class Game {
 
     private static GameRenderer renderer = null;
 
-    private static final Mouse mouse = new Mouse();
+    private static Mouse mouse = null;
+
+    private static Keyboard keyboard = null;
 
     private static final Color BACKGROUND = Color.DARK_GRAY;
 
@@ -28,7 +31,12 @@ public class Game {
     public static void init(Window gameWindow, GameConfig config) {
         window = gameWindow;
         window.setup();
+
+        mouse = new Mouse();
         window.setMouse(mouse);
+
+        keyboard = new Keyboard();
+        window.setKeyboard(keyboard);
 
         gameLoop = new GameLoop(config.fps, config.tps);
         
@@ -110,5 +118,12 @@ public class Game {
         }
         return mouse;
     }
-    
+
+    public static Keyboard keyboard() {
+        if(keyboard == null) {
+            notInitialized();
+        }
+        return keyboard;
+    }
+
 }

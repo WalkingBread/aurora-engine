@@ -1,6 +1,8 @@
 package skorupinski.aurora.geometry;
 
+import skorupinski.aurora.geometry.collision.CollisionDetector;
 import skorupinski.aurora.math.Vector2;
+import skorupinski.aurora.rendering.Camera;
 
 public abstract class Shape {
 
@@ -26,7 +28,18 @@ public abstract class Shape {
 
     public abstract Vector2[] getVertices();
 
-    protected Vector2[] getAxes() {
+    public Vector2[] verticesToIsometry() {
+        Vector2[] vertices = getVertices();
+        Vector2[] isometricVertices = new Vector2[vertices.length];
+
+        for(int i = 0; i < getVertices().length; i++) {
+            isometricVertices[i] = Camera.isometricTo2D(vertices[i].toVector3());
+        }
+
+        return isometricVertices;
+    }
+
+    public Vector2[] getAxes() {
         Vector2[] vertices = getVertices();
         Vector2[] axes = new Vector2[vertices.length];
 

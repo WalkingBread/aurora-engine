@@ -66,18 +66,20 @@ public class Vector3 {
     }
 
     public Vector3 rotate(Vector3 rotationMid, Vector3 angles) {
-        Vector3 temp = rotationMid.substract(this);
+        Vector3 temp = substract(rotationMid);
         Matrix m = temp.toMatrix();
 
         m = Constants.getXRotationMatrix(angles.x).multiply(m);
         m = Constants.getYRotationMatrix(angles.y).multiply(m);
         m = Constants.getZRotationMatrix(angles.z).multiply(m);
 
-        return new Vector3(
+        Vector3 rotated = new Vector3(
             m.getValueAt(0, 0), 
             m.getValueAt(1, 0), 
             m.getValueAt(2, 0)
         );
+
+        return rotated.add(rotationMid);
     }
 
     @Override

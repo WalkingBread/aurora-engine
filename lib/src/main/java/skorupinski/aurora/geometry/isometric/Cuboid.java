@@ -39,7 +39,7 @@ public class Cuboid extends Object3D {
     }
 
     @Override
-    public void draw(Painter painter, Vector2 position, Camera camera) {
+    protected void drawObject(Painter painter, Vector2 position, Camera camera) {
         painter.color(Color.BLACK);
 
         for(int i = 0; i < 4; i++) {
@@ -51,15 +51,7 @@ public class Cuboid extends Object3D {
             painter.line(a.toVector2i(), b.toVector2i());
             painter.line(c.toVector2i(), d.toVector2i());
             painter.line(a.toVector2i(), c.toVector2i());
-
         }
-
-        painter.color(Color.BLUE);
-        Rectangle rect = getRectangle();
-        Vector2 p = camera.getDisplayPosition(rect.position);
-        rect.position = p;
-
-        painter.draw(rect);
     }
 
     @Override

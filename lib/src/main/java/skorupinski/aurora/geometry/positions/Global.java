@@ -11,6 +11,10 @@ public class Global extends Position {
         this.position = position;
     }
 
+    public Global(float x, float y) {
+        position = new Vector2(x, y);
+    }
+
     @Override
     public Vector2 vector() {
         return position;

@@ -41,7 +41,27 @@ public class Camera {
         return new Vector2(
             projection.getValueAt(0, 0), 
             projection.getValueAt(1, 0)
-         );
+        );
+    }
+
+    public static Vector3 toIsometric(Vector2 position) {
+        Vector2 xFactor = isometricTo2D(new Vector3(1, 0, 0));
+        Vector2 yFactor = isometricTo2D(new Vector3(0, 1, 0));
+
+        Matrix m1 = new Matrix(new float[][]{
+            { xFactor.x, yFactor.x },
+            { xFactor.y, yFactor.y }
+        });
+
+        Matrix m2 = position.toMatrix();
+
+        Matrix res = m1.inverse().multiply(m2);
+
+        return new Vector3(
+            res.getValueAt(0, 0),
+            res.getValueAt(1, 0),
+            0
+        );
     }
 }
 

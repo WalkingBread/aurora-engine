@@ -19,7 +19,7 @@ public class Point extends Shape {
     }
 
     @Override
-    protected Vector2[] getAxes() {
+    public Vector2[] getAxes() {
         return new Vector2[]{};
     }
 }

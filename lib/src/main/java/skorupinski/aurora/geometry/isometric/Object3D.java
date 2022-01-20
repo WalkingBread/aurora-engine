@@ -1,8 +1,14 @@
 package skorupinski.aurora.geometry.isometric;
 
+import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.geometry.positions.Isometric;
+import skorupinski.aurora.graphics.Painter;
+import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector3;
+import skorupinski.aurora.rendering.Camera;
 import skorupinski.aurora.rendering.Renderable;
+
+import java.awt.Color;
 
 public abstract class Object3D extends Renderable<Isometric> {
 
@@ -25,7 +31,26 @@ public abstract class Object3D extends Renderable<Isometric> {
         drawBoundingBox = false;
     }
 
-    public abstract Isometric[] getInitialVertexPositions();
+    protected abstract void drawObject(Painter painter, Vector2 position, Camera camera);
+
+    @Override
+    protected void draw(Painter painter, Vector2 position, Camera camera) {
+
+        drawObject(painter, position, camera);
+        if(drawBoundingBox) {
+            
+            painter.color(Color.BLUE);
+            Rectangle rect = getRectangle();
+            Vector2 p = camera.getDisplayPosition(rect.position);
+            rect.position = p;
+    
+            painter.draw(rect);
+        }
+    }
+
+    public void drawBoundingBox(boolean draw) {
+        drawBoundingBox = draw;
+    }
 
     public void setRotationMid(Isometric rotationMid) {
         this.rotationMid = rotationMid;
@@ -39,11 +64,13 @@ public abstract class Object3D extends Renderable<Isometric> {
         rotation = rotation.add(angles);
     }
 
+    public abstract Isometric[] getInitialVertexPositions();
+
     public Isometric[] getVertices() {
         Isometric[] vertices = getInitialVertexPositions();
 
         for(Isometric v : vertices) {
-            v.rotate(mid, rotation);
+            v.rotate(rotationMid, rotation);
         }
 
         return vertices;

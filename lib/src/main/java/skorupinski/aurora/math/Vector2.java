@@ -26,7 +26,6 @@ public class Vector2 {
         return Maths.pitagorean(x, y);
     }
 
-    
     public Vector2 substract(Vector2 v) {
         return new Vector2(
             x - v.x,
@@ -84,8 +83,18 @@ public class Vector2 {
         return new Vector2(-y, x);
     }
 
+    public Vector3 toVector3(){
+        return new Vector3(x, y, 0);
+    } 
+
     public Vector2i toVector2i() {
         return new Vector2i((int) x, (int) y);
+    }
+
+    public Matrix toMatrix() {
+        return new Matrix(new float[][]{
+            {x}, {y}
+        });
     }
 
     @Override

@@ -15,7 +15,7 @@ public abstract class Renderable<T extends Position> {
         this.position = position;
     }
 
-    public abstract void draw(Painter painter, Vector2 position, Camera camera);
+    protected abstract void draw(Painter painter, Vector2 position, Camera camera);
 
     public void display(Camera camera, Painter painter) {
         Vector2 displayPosition = null;
