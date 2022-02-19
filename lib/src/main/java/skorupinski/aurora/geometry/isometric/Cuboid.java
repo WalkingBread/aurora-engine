@@ -1,13 +1,11 @@
 package skorupinski.aurora.geometry.isometric;
 
-import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.geometry.positions.Isometric;
+import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector3;
 import skorupinski.aurora.rendering.Camera;
-
-import java.awt.Color;
 
 public class Cuboid extends Object3D {
     
@@ -40,8 +38,6 @@ public class Cuboid extends Object3D {
 
     @Override
     protected void drawObject(Painter painter, Vector2 position, Camera camera) {
-        painter.color(Color.BLACK);
-
         for(int i = 0; i < 4; i++) {
             Vector2 a = getVertices()[i].toDisplayPosition(camera).vector();
             Vector2 b = getVertices()[(i + 1) % 4].toDisplayPosition(camera).vector();
@@ -66,19 +62,15 @@ public class Cuboid extends Object3D {
             
             if(top == null || v.y < top.y) {
                 top = v;
-
             } 
             if(bottom == null || v.y > bottom.y) {
                 bottom = v;
-
             } 
             if(left == null || v.x < left.x) {
                 left = v;
-
             } 
             if(right == null || v.x > right.x) {
                 right = v;
-
             } 
         }
         

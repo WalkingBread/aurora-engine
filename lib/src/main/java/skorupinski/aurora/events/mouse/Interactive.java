@@ -1,4 +1,4 @@
-package skorupinski.aurora.events;
+package skorupinski.aurora.events.mouse;
 
 import skorupinski.aurora.math.Vector2;
 

@@ -2,9 +2,9 @@ package skorupinski.aurora.game;
 
 import java.awt.Color;
 
-import skorupinski.aurora.events.Keyboard;
-import skorupinski.aurora.events.Mouse;
-import skorupinski.aurora.geometry.Rectangle;
+import skorupinski.aurora.events.keyboard.Keyboard;
+import skorupinski.aurora.events.mouse.Mouse;
+import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 

@@ -8,4 +8,5 @@ public class Maths {
 
         return (float) Math.sqrt(aPow + bPow);
     }
+
 }

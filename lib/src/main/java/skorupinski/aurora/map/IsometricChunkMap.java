@@ -1,11 +1,16 @@
 package skorupinski.aurora.map;
 
-import skorupinski.aurora.geometry.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+
+import skorupinski.aurora.geometry.isometric.Object3D;
 import skorupinski.aurora.geometry.positions.Isometric;
+import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
 import skorupinski.aurora.rendering.Camera;
+import skorupinski.aurora.rendering.IsometricRenderingOrder;
 import skorupinski.aurora.rendering.Renderable;
 
 public class IsometricChunkMap extends Renderable<Isometric> {
@@ -17,6 +22,10 @@ public class IsometricChunkMap extends Renderable<Isometric> {
     private Vector2 realSize;
 
     private Chunk[][] chunks;
+
+    private List<Object3D> objects;
+
+    private List<? extends Object3D> entities;
 
     public IsometricChunkMap(Vector2i sizeInChunks, int chunkSize) {
         super(new Isometric(0, 0, 0));
@@ -40,8 +49,7 @@ public class IsometricChunkMap extends Renderable<Isometric> {
         }
     }
 
-    @Override
-    protected void draw(Painter painter, Vector2 position, Camera camera) {
+    private void drawChunks(Painter painter, Camera camera) {
         for(int x = 0; x < sizeInChunks.x; x++) {
             for(int y = 0; y < sizeInChunks.y; y++) {
                 Chunk chunk = chunks[x][y];
@@ -50,6 +58,17 @@ public class IsometricChunkMap extends Renderable<Isometric> {
                 }
             }
         }
+    }
+
+    @Override
+    protected void draw(Painter painter, Vector2 position, Camera camera) {
+        drawChunks(painter, camera);
+
+        List<Object3D> all = new ArrayList<>(objects);
+        all.addAll(entities);
+
+        IsometricRenderingOrder iro = new IsometricRenderingOrder(all, camera);
+        iro.display(camera, painter);
     }
 
     public int getChunkSize() {

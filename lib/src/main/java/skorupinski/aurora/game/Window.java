@@ -10,8 +10,8 @@ import java.awt.Canvas;
 
 import javax.swing.JFrame;
 
-import skorupinski.aurora.events.Keyboard;
-import skorupinski.aurora.events.Mouse;
+import skorupinski.aurora.events.keyboard.Keyboard;
+import skorupinski.aurora.events.mouse.Mouse;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
 

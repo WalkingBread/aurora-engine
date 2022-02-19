@@ -1,4 +1,4 @@
-package skorupinski.aurora.geometry;
+package skorupinski.aurora.geometry.shapes;
 
 import skorupinski.aurora.math.Vector2;
 

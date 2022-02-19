@@ -1,6 +1,7 @@
 package skorupinski.aurora.graphics.sprites;
 
 import skorupinski.aurora.loading.ResourceManager;
+import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
 
 import java.awt.image.BufferedImage;
@@ -11,6 +12,8 @@ import java.nio.file.Path;
 
 public class Sprite {
     private BufferedImage image;
+
+    private Vector2i offset;
 
     public Sprite(Path path) {
         try {
@@ -47,6 +50,14 @@ public class Sprite {
             image.getWidth(),
             image.getHeight()
         );
+    }
+
+    public void setOffset(Vector2i offset) {
+        this.offset = offset;
+    }
+
+    public Vector2i getOffset() {
+        return offset;
     }
 
     public BufferedImage raw() {

@@ -2,8 +2,8 @@ package skorupinski.aurora.map;
 
 import java.awt.Color;
 
-import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.geometry.positions.Isometric;
+import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.rendering.Camera;

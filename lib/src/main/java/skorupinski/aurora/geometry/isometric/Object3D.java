@@ -1,7 +1,8 @@
 package skorupinski.aurora.geometry.isometric;
 
-import skorupinski.aurora.geometry.Rectangle;
 import skorupinski.aurora.geometry.positions.Isometric;
+import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector3;
@@ -20,6 +21,10 @@ public abstract class Object3D extends Renderable<Isometric> {
 
     private boolean drawBoundingBox;
 
+    private Color boundingBoxColor;
+
+    private Color outlineColor;
+
     public Object3D(Isometric position, Isometric mid) {
         super(position);
 
@@ -29,17 +34,21 @@ public abstract class Object3D extends Renderable<Isometric> {
         rotationMid = mid;
 
         drawBoundingBox = false;
+
+        boundingBoxColor = Color.BLUE;
+        outlineColor = Color.BLACK;
     }
 
     protected abstract void drawObject(Painter painter, Vector2 position, Camera camera);
 
     @Override
     protected void draw(Painter painter, Vector2 position, Camera camera) {
+        painter.color(outlineColor);
 
         drawObject(painter, position, camera);
         if(drawBoundingBox) {
             
-            painter.color(Color.BLUE);
+            painter.color(boundingBoxColor);
             Rectangle rect = getRectangle();
             Vector2 p = camera.getDisplayPosition(rect.position);
             rect.position = p;
@@ -50,6 +59,14 @@ public abstract class Object3D extends Renderable<Isometric> {
 
     public void drawBoundingBox(boolean draw) {
         drawBoundingBox = draw;
+    }
+
+    public void setBoundingBoxColor(Color color) {
+        boundingBoxColor = color;
+    }
+
+    public void setOutlineColor(Color color) {
+        outlineColor = color;
     }
 
     public void setRotationMid(Isometric rotationMid) {
@@ -76,5 +93,42 @@ public abstract class Object3D extends Renderable<Isometric> {
         return vertices;
     }
 
+    public Vector3[] getVerticesVectors() {
+        Isometric[] ve = getVertices();
+        Vector3[] vertices = new Vector3[ve.length];
 
+        for(int i = 0; i < ve.length; i++) {
+            vertices[i] = ve[i].vector();
+        }
+
+        return vertices;
+    }
+
+    public Vector2[] getVerticesDisplayed(Camera camera) {
+        Isometric[] vertices = getVertices();
+        Vector2[] vertices2D = new Vector2[vertices.length];
+
+        for(int i = 0; i < vertices.length; i++) {
+            vertices2D[i] = vertices[i].toDisplayPosition(camera).vector();
+        }
+
+        return vertices2D;
+    }
+
+    public Shape getDisplayedShape(Camera camera) {
+        Vector2[] vertices = getVerticesDisplayed(camera);
+        return new Shape(vertices[0]) {
+
+            @Override
+            public Vector2 getMid() {
+                return mid.toDisplayPosition(camera).vector();
+            }
+
+            @Override
+            public Vector2[] getVertices() {
+                return vertices;
+            }
+            
+        };
+    }
 }

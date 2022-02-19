@@ -1,6 +1,6 @@
-package skorupinski.aurora.geometry;
+package skorupinski.aurora.geometry.shapes;
 
-import skorupinski.aurora.geometry.collision.CollisionDetector;
+import skorupinski.aurora.geometry.sat.AxisProjector;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.rendering.Camera;
 
@@ -17,11 +17,11 @@ public abstract class Shape {
     }
 
     public boolean collidesWith(Shape shape) {
-        return CollisionDetector.collide(this, shape);
+        return AxisProjector.collide(this, shape);
     }
 
     public boolean collidesWith(Vector2 point) {
-        return CollisionDetector.collide(this, new Point(point));
+        return AxisProjector.collide(this, new Point(point));
     }
 
     public abstract Vector2 getMid();
@@ -49,7 +49,7 @@ public abstract class Shape {
                 vertices[i].y - vertices[i + 1 == vertices.length ? 0 : i + 1].y
             );
     
-            axes[i] = v.normal().normalize();
+            axes[i] = v.normalize();
         }
         return axes;
     }

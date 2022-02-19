@@ -1,6 +1,6 @@
-package skorupinski.aurora.events;
+package skorupinski.aurora.events.mouse;
 
-import skorupinski.aurora.geometry.Shape;
+import skorupinski.aurora.geometry.shapes.Shape;
 
 public class MouseSensitive {
 

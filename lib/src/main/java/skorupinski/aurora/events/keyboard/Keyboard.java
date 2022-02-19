@@ -1,4 +1,4 @@
-package skorupinski.aurora.events;
+package skorupinski.aurora.events.keyboard;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

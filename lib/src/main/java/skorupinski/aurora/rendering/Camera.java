@@ -1,7 +1,7 @@
 package skorupinski.aurora.rendering;
 
 import skorupinski.aurora.game.Game;
-import skorupinski.aurora.geometry.Rectangle;
+import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.math.Constants;
 import skorupinski.aurora.math.Matrix;
 import skorupinski.aurora.math.Vector2;

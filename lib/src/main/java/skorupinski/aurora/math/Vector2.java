@@ -101,4 +101,8 @@ public class Vector2 {
     public String toString() {
         return x + ", " + y;
     }
+
+    public static Vector2 midBetween(Vector2 p1, Vector2 p2) {
+        return p1.add(p2).divide(2);
+    }
 }

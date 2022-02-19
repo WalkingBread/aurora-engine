@@ -43,6 +43,37 @@ public class Vector3 {
         );
     }
 
+    public Vector2 multiply(float n) {
+        return new Vector2(
+            x * n, 
+            y * n
+        );
+    }
+
+    public Vector3 multiply(Vector3 v) {
+        return new Vector3(
+            x * v.x, 
+            y * v.y,
+            z * v.z
+        );
+    }
+
+    public Vector3 divide(float n) {
+        return new Vector3(
+            x / n, 
+            y / n,
+            z / n
+        );
+    }
+
+    public Vector3 divide(Vector3 v) {
+        return new Vector3(
+            x / v.x, 
+            y / v.y,
+            z / v.z
+        );
+    }
+
     public float getLength() {
         return distanceFrom(new Vector3(0, 0, 0));
     }
@@ -85,5 +116,9 @@ public class Vector3 {
     @Override
     public String toString() {
         return x + ", " + y + ", " + z;
+    }
+
+    public static Vector3 midBetween(Vector3 p1, Vector3 p2) {
+        return p1.add(p2).divide(2);
     }
 }

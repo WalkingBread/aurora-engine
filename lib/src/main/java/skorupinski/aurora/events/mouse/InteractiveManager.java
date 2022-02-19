@@ -1,9 +1,9 @@
-package skorupinski.aurora.events;
+package skorupinski.aurora.events.mouse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import skorupinski.aurora.geometry.Shape;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.math.Vector2;
 
 public class InteractiveManager {

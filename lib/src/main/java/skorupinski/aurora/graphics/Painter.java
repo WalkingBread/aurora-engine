@@ -2,7 +2,7 @@ package skorupinski.aurora.graphics;
 
 import java.awt.Graphics2D;
 
-import skorupinski.aurora.geometry.Shape;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.sprites.Sprite;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
@@ -64,14 +64,17 @@ public class Painter {
     }
 
     public void sprite(Sprite sprite, Vector2i position) {
+        position = position.toVector2().add(position.toVector2()).toVector2i();
         graphics.drawImage(sprite.raw(), position.x, position.y, null);
     }
 
     public void sprite(Sprite sprite, Vector2i position, Vector2i size) {
+        position = position.toVector2().add(position.toVector2()).toVector2i();
         graphics.drawImage(sprite.resize(size).raw(), position.x, position.y, null);
     }
 
     public void sprite(Sprite sprite, Vector2i position, int height) {
+        position = position.toVector2().add(position.toVector2()).toVector2i();
         graphics.drawImage(sprite.resizeWithProp(height).raw(), position.x, position.y, null);
     }
 }
