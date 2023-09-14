@@ -50,18 +50,26 @@ public class AxisProjector {
             new Vector3(0, 0, 1)
         };
 
+        Projection p1 = null;
+        Projection p2 = null;
+
         for(Vector3 axis : axes) { 
             Projection o1Proj = project(o1, axis);
             Projection o2Proj = project(o2, axis);
 
-            if(o1Proj.min >= o2Proj.max) {
-                return false;
-
-            } else if(o2Proj.min >= o1Proj.max) {
-                return true;
+            if(o1Proj.max <= o2Proj.min || o2Proj.max <= o1Proj.min) {
+                p1 = o1Proj;
+                p2 = o2Proj;
+                break;
             }
         }
 
+        if(p1.min >= p2.max) {
+            return true;
+
+        } else if(p2.min >= p1.max) {
+            return false;
+        }
         return false;
     }
 

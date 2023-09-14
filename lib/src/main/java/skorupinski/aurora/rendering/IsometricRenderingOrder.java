@@ -31,13 +31,18 @@ public class IsometricRenderingOrder {
 
             @Override
             public int compare(Object3D o1, Object3D o2) {
+                Integer o1i = 1;
+                Integer o2i = 0;
+
                 Shape s1 = o1.getDisplayedShape(camera);
                 Shape s2 = o2.getDisplayedShape(camera);
 
-                if(AxisProjector.collide(s1, s2) && AxisProjector.inFront(o1, o2)) {
-                    return 1;
+                if(AxisProjector.collide(s1, s2) && AxisProjector.inFront(o2, o1)) {
+                    o1i = 0;
+                    o2i = 1;
                 }
-                return 0; 
+
+                return o1i.compareTo(o2i);
             }
         };
     }

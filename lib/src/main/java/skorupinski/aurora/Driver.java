@@ -38,7 +38,7 @@ public class Driver {
 
         Cuboid c1 = new Cuboid(new Vector3(0, 0, 0), new Vector3(50, 50, 50));
         c1.setOutlineColor(Color.RED);
-        Cuboid c2 = new Cuboid(new Vector3(50, 51, 0), new Vector3(50, 50, 50));
+        Cuboid c2 = new Cuboid(new Vector3(50, 0, 0), new Vector3(50, 50, 50));
         c2.setOutlineColor(Color.BLUE);
 
         List<Object3D> objects = new ArrayList<>();
@@ -46,12 +46,6 @@ public class Driver {
         objects.add(c2);
 
         IsometricRenderingOrder iro = new IsometricRenderingOrder(objects, camera);
-
-        System.out.println(iro.getOrder().indexOf(c1));
-
-        if(AxisProjector.collide(c1, c2)) {
-            System.out.println(true);
-        }
 
         GameEventHandler handler = new GameEventHandler() {
 
@@ -67,16 +61,23 @@ public class Driver {
             public void onFrame(Painter painter) {
                 painter.color(Color.CYAN);
                 iro.display(camera, painter);
+                /*if(AxisProjector.inFront(c1, c2)) {
+                    c2.display(camera, painter);
+                    c1.display(camera, painter);
+                } else {
+                    c1.display(camera, painter);
+                    c2.display(camera, painter);
+                }*/
             }
 
             @Override
             public void onStart() {
-                System.out.println("hello");
+                //System.out.println("hello");
             }
 
             @Override
             public void onClose() {
-                System.out.println("bye");
+                //System.out.println("bye");
             }
             
         };
