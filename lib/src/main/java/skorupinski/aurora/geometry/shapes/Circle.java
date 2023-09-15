@@ -25,11 +25,6 @@ public class Circle extends Shape {
     } 
 
     @Override
-    public boolean collidesWith(Vector2 point) {
-        return false;
-    }
-
-    @Override
     public Vector2 getMid() {
         return position;
     }

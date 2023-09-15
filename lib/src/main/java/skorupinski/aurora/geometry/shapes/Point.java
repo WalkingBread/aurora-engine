@@ -17,9 +17,4 @@ public class Point extends Shape {
     public Vector2[] getVertices() {
         return new Vector2[]{position};
     }
-
-    @Override
-    public Vector2[] getAxes() {
-        return new Vector2[]{};
-    }
 }

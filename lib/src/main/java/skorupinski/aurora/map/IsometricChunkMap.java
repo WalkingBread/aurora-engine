@@ -35,6 +35,9 @@ public class IsometricChunkMap extends Renderable<Isometric> {
 
         realSize = sizeInChunks.toVector2().multiply(chunkSize);
 
+        objects = new ArrayList<>();
+        entities = new ArrayList<>();
+
         createMap();
     }
 

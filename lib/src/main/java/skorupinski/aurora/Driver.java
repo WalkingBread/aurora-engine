@@ -11,10 +11,12 @@ import skorupinski.aurora.game.Window;
 import skorupinski.aurora.geometry.isometric.Cuboid;
 import skorupinski.aurora.geometry.isometric.Object3D;
 import skorupinski.aurora.geometry.positions.Isometric;
-import skorupinski.aurora.geometry.sat.AxisProjector;
-import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Circle;
+import skorupinski.aurora.geometry.shapes.Point;
 import skorupinski.aurora.graphics.Painter;
+import skorupinski.aurora.map.IsometricChunkMap;
 import skorupinski.aurora.math.Vector2;
+import skorupinski.aurora.math.Vector2i;
 import skorupinski.aurora.math.Vector3;
 import skorupinski.aurora.rendering.Camera;
 import skorupinski.aurora.rendering.IsometricRenderingOrder;
@@ -25,7 +27,7 @@ public class Driver {
         Window window = new Window();
 
         window.setTitle("test");
-        window.setSize(800, 600);
+        window.setSize(1000, 800);
 
         GameConfig config = new GameConfig();
 
@@ -45,7 +47,11 @@ public class Driver {
         objects.add(c1);
         objects.add(c2);
 
+        IsometricChunkMap map = new IsometricChunkMap(new Vector2i(10, 10), 100);
+
         IsometricRenderingOrder iro = new IsometricRenderingOrder(objects, camera);
+
+        MyCircle circle = new MyCircle(50, 50, 20);
 
         GameEventHandler handler = new GameEventHandler() {
 
@@ -54,20 +60,15 @@ public class Driver {
                 //System.out.println(Game.loop().getFps());
 
                 camera.focusOn(new Isometric(0, 0, 0).toGlobalPosition().vector());
-
             }
 
             @Override
             public void onFrame(Painter painter) {
-                painter.color(Color.CYAN);
+                map.display(camera, painter);
                 iro.display(camera, painter);
-                /*if(AxisProjector.inFront(c1, c2)) {
-                    c2.display(camera, painter);
-                    c1.display(camera, painter);
-                } else {
-                    c1.display(camera, painter);
-                    c2.display(camera, painter);
-                }*/
+                painter.color(Color.CYAN);
+                painter.fill(circle);
+
             }
 
             @Override
