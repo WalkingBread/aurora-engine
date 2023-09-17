@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import skorupinski.aurora.geometry.positions.Isometric;
 import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.rendering.Camera;
@@ -34,7 +35,7 @@ public class Chunk extends Renderable<Isometric> {
     }
 
     @Override
-    public Rectangle getRectangle() {
+    public Shape getShape() {
         Vector2 globalPosition = position.toGlobalPosition().vector();
         Vector2 displaySize = getDisplaySize();
 
@@ -51,7 +52,7 @@ public class Chunk extends Renderable<Isometric> {
     public boolean inCamera(Camera camera) {
         Rectangle cameraRectangle = camera.getRectangle();
 
-        if(getRectangle().collidesWith(cameraRectangle)) {
+        if(getShape().collidesWith(cameraRectangle)) {
             return true;
         }
     

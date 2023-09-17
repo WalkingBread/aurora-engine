@@ -5,7 +5,7 @@ import java.util.List;
 
 import skorupinski.aurora.geometry.isometric.Object3D;
 import skorupinski.aurora.geometry.positions.Isometric;
-import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
@@ -96,7 +96,7 @@ public class IsometricChunkMap extends Renderable<Isometric> {
     }
 
     @Override
-    public Rectangle getRectangle() {
+    public Shape getShape() {
         return null;
     }
     

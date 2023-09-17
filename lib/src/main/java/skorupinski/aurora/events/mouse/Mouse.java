@@ -10,6 +10,7 @@ import java.util.List;
 
 import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.math.Vector2;
+import skorupinski.aurora.rendering.Renderable;
 
 public class Mouse implements MouseListener, MouseMotionListener {
     
@@ -28,28 +29,22 @@ public class Mouse implements MouseListener, MouseMotionListener {
         interactiveManager = new InteractiveManager(this);
     }
 
-    public void registerInteractive(Shape shape) {
-        interactiveManager.registerInteractive(shape);
+    public void registerInteractive(Renderable<?> renderable) {
+        System.out.println("registered");
+        interactiveManager.registerInteractive(renderable);
     }
 
-    public void unregisterInteractive(Shape shape) {
-        interactiveManager.unregisterInteractive(shape);
+    public void unregisterInteractive(Renderable<?> renderable) {
+        interactiveManager.unregisterInteractive(renderable);
     }
 
     public boolean isPressed(MouseButton button) {
-        if(pressedButtons.contains(button)) {
-            return true;
-        }
-        return false;
+        return pressedButtons.contains(button);
     }
 
     public boolean mousePressed() {
-        if(pressedButtons.size() > 0) {
-            return true;
-        }
-        return false;
+        return pressedButtons.size() > 0;
     }
-
 
     private void setPosition(float x, float y) {
         mousePosition = new Vector2(x, y);

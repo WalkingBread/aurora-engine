@@ -49,7 +49,7 @@ public abstract class Object3D extends Renderable<Isometric> {
         if(drawBoundingBox) {
             
             painter.color(boundingBoxColor);
-            Rectangle rect = getRectangle();
+            Rectangle rect = (Rectangle) getShape();
             Vector2 p = camera.getDisplayPosition(rect.position);
             rect.position = p;
     

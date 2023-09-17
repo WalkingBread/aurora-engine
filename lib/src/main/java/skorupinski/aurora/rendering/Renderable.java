@@ -5,6 +5,7 @@ import skorupinski.aurora.geometry.positions.Global;
 import skorupinski.aurora.geometry.positions.Isometric;
 import skorupinski.aurora.geometry.positions.Position;
 import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 
@@ -36,7 +37,7 @@ public abstract class Renderable<T extends Position> {
         draw(painter, displayPosition, camera);
     }
 
-    public abstract Rectangle getRectangle();
+    public abstract Shape getShape();
 
     public T getPosition() {
         return position;

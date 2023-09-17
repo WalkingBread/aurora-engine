@@ -2,6 +2,7 @@ package skorupinski.aurora.geometry.isometric;
 
 import skorupinski.aurora.geometry.positions.Isometric;
 import skorupinski.aurora.geometry.shapes.Rectangle;
+import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector3;
@@ -51,7 +52,7 @@ public class Cuboid extends Object3D {
     }
 
     @Override
-    public Rectangle getRectangle() {
+    public Shape getShape() {
         Vector2 top = null;
         Vector2 bottom = null;
         Vector2 left = null;

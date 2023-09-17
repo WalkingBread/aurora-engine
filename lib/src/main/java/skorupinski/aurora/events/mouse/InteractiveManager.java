@@ -3,8 +3,8 @@ package skorupinski.aurora.events.mouse;
 import java.util.ArrayList;
 import java.util.List;
 
-import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.math.Vector2;
+import skorupinski.aurora.rendering.Renderable;
 
 public class InteractiveManager {
 
@@ -20,7 +20,7 @@ public class InteractiveManager {
 
     void checkInteractivesHovered() {
         for(MouseSensitive ms : interactives) {
-            Interactive i  = (Interactive) ms.shape;
+            Interactive i  = (Interactive) ms.renderable;
             if(ms.isHovered(mouse) && !ms.alreadyHovered) {
                 i.onHover();
                 ms.alreadyHovered = true;
@@ -31,53 +31,49 @@ public class InteractiveManager {
         }
     }
 
-    boolean containsInteractive(Shape shape) {
-        for(MouseSensitive ms : interactives) {
-            if(shape == ms.shape) {
-                return true;
-            }
-        }
-        return false;
+    boolean containsInteractive(Renderable<?> renderable) {
+        return getMouseSensitiveBy(renderable) != null;
     }
 
-    MouseSensitive getMouseSensitiveBy(Shape shape) {
+    MouseSensitive getMouseSensitiveBy(Renderable<?> renderable) {
         for(MouseSensitive ms : interactives) {
-            if(shape == ms.shape) {
+            if(ms.renderable == renderable) {
                 return ms;
             }
         }
         return null;
     }
 
-    void registerInteractive(Shape shape) {
-        if(shape instanceof Interactive) {
-            if(!containsInteractive(shape)) {
-                interactives.add(new MouseSensitive(shape));
+    void registerInteractive(Renderable<?> renderable) {
+        if(renderable instanceof Interactive) {
+            if(!containsInteractive(renderable)) {
+                interactives.add(new MouseSensitive(renderable));
             }
         } else {
             throw new IllegalStateException("Is not an interactive.");
         }
     }
 
-    void unregisterInteractive(Shape shape) {
-        if(containsInteractive(shape)) {
-            interactives.remove(getMouseSensitiveBy(shape));
+    void unregisterInteractive(Renderable<?> renderable) {
+        if(containsInteractive(renderable)) {
+            interactives.remove(getMouseSensitiveBy(renderable));
         }
     }
 
     void dragForAll(Vector2 move) {
         for(MouseSensitive ms : interactives) {
             if(ms.isHovered(mouse)) {
-                Interactive i  = (Interactive) ms.shape;
+                Interactive i  = (Interactive) ms.renderable;
                 i.onDrag(move);
             }
         }
     }
 
     void clickForAll(MouseButton button) {
+        System.out.println(interactives.size());
         for(MouseSensitive ms : interactives) {
             if(ms.isHovered(mouse)) {
-                Interactive i  = (Interactive) ms.shape;
+                Interactive i  = (Interactive) ms.renderable;
                 i.onClick(button);
             }
         }
@@ -86,7 +82,7 @@ public class InteractiveManager {
     void pressForAll(MouseButton button) {
         for(MouseSensitive ms : interactives) {
             if(ms.isHovered(mouse)) {
-                Interactive i  = (Interactive) ms.shape;
+                Interactive i  = (Interactive) ms.renderable;
                 i.onPress(button);
             }
         }
@@ -95,7 +91,7 @@ public class InteractiveManager {
     void releaseForAll(MouseButton button) {
         for(MouseSensitive ms : interactives) {
             if(ms.isHovered(mouse)) {
-                Interactive i  = (Interactive) ms.shape;
+                Interactive i  = (Interactive) ms.renderable;
                 i.onRelease(button);
             }
         }

@@ -11,11 +11,8 @@ import skorupinski.aurora.game.Window;
 import skorupinski.aurora.geometry.isometric.Cuboid;
 import skorupinski.aurora.geometry.isometric.Object3D;
 import skorupinski.aurora.geometry.positions.Isometric;
-import skorupinski.aurora.geometry.shapes.Circle;
-import skorupinski.aurora.geometry.shapes.Point;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.map.IsometricChunkMap;
-import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.math.Vector2i;
 import skorupinski.aurora.math.Vector3;
 import skorupinski.aurora.rendering.Camera;
@@ -51,7 +48,8 @@ public class Driver {
 
         IsometricRenderingOrder iro = new IsometricRenderingOrder(objects, camera);
 
-        MyCircle circle = new MyCircle(50, 50, 20);
+        MyButton btn = new MyButton(50, 50, 100, 50);
+
 
         GameEventHandler handler = new GameEventHandler() {
 
@@ -67,8 +65,7 @@ public class Driver {
                 map.display(camera, painter);
                 iro.display(camera, painter);
                 painter.color(Color.CYAN);
-                painter.fill(circle);
-
+                btn.display(camera, painter);
             }
 
             @Override
