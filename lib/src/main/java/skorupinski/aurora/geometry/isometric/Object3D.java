@@ -131,4 +131,19 @@ public abstract class Object3D extends Renderable<Isometric> {
             
         };
     }
+
+    public Vector3[] getAxes() {
+        Vector3[] vertices = getVerticesVectors();
+        Vector3[] axes = new Vector3[vertices.length];
+
+        for(int i = 0; i < axes.length; i++) {
+            Vector3 v = new Vector3(
+                vertices[i].x - vertices[i + 1 == vertices.length ? 0 : i + 1].x,
+                vertices[i].y - vertices[i + 1 == vertices.length ? 0 : i + 1].y,
+                vertices[i].z - vertices[i + 1 == vertices.length ? 0 : i + 1].z
+            );
+            axes[i] = v.normalize();
+        }
+        return axes;
+    }
 }

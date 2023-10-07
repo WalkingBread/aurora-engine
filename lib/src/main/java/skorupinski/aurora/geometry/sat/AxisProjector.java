@@ -1,6 +1,8 @@
 package skorupinski.aurora.geometry.sat;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import skorupinski.aurora.geometry.isometric.Object3D;
 import skorupinski.aurora.geometry.shapes.Shape;
@@ -26,11 +28,25 @@ public class AxisProjector {
     }
 
     public static boolean collide(Object3D o1, Object3D o2) {
-        Vector3[] axes = new Vector3[] {
+        /*Vector3[] axes = new Vector3[] {
             new Vector3(1, 0, 0),
             new Vector3(0, 1, 0),
             new Vector3(0, 0, 1)
-        };
+        }; */
+
+        //axes = concatAxes(o1.getAxes(), o2.getAxes());
+
+        List<Vector3> axes = new ArrayList<>();
+
+        for(Vector3 o1Axis : o1.getAxes()) {
+            axes.add(o1Axis);
+            for(Vector3 o2Axis : o2.getAxes()) {
+                axes.add(o2Axis);
+                Vector3 cross = o1Axis.cross(o2Axis);
+                cross = cross.normalize();
+                axes.add(cross);
+            }
+        }
 
         for(Vector3 axis : axes) { 
             Projection o1Proj = project(o1, axis);

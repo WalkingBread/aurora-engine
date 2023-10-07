@@ -14,7 +14,6 @@ public class InteractiveManager {
     
     InteractiveManager(Mouse mouse) {
         interactives = new ArrayList<>();
-
         this.mouse = mouse;
     }
 
@@ -70,7 +69,6 @@ public class InteractiveManager {
     }
 
     void clickForAll(MouseButton button) {
-        System.out.println(interactives.size());
         for(MouseSensitive ms : interactives) {
             if(ms.isHovered(mouse)) {
                 Interactive i  = (Interactive) ms.renderable;

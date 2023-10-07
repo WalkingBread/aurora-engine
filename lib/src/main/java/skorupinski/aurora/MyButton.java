@@ -2,6 +2,7 @@ package skorupinski.aurora;
 import java.awt.Color;
 
 import skorupinski.aurora.events.mouse.MouseButton;
+import skorupinski.aurora.game.Game;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;
 import skorupinski.aurora.rendering.Camera;
@@ -38,7 +39,7 @@ public class MyButton extends Button {
 
     @Override
     public void onRelease(MouseButton button) {
-        color = Color.BLACK;
+        color = Color.WHITE;
     }
 
     @Override

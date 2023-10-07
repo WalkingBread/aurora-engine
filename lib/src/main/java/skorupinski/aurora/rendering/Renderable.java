@@ -4,7 +4,6 @@ import skorupinski.aurora.geometry.positions.Display;
 import skorupinski.aurora.geometry.positions.Global;
 import skorupinski.aurora.geometry.positions.Isometric;
 import skorupinski.aurora.geometry.positions.Position;
-import skorupinski.aurora.geometry.shapes.Rectangle;
 import skorupinski.aurora.geometry.shapes.Shape;
 import skorupinski.aurora.graphics.Painter;
 import skorupinski.aurora.math.Vector2;

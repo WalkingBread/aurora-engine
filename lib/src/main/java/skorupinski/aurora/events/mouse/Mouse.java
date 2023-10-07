@@ -30,12 +30,15 @@ public class Mouse implements MouseListener, MouseMotionListener {
     }
 
     public void registerInteractive(Renderable<?> renderable) {
-        System.out.println("registered");
         interactiveManager.registerInteractive(renderable);
     }
 
     public void unregisterInteractive(Renderable<?> renderable) {
         interactiveManager.unregisterInteractive(renderable);
+    }
+
+    public boolean isHovered(Shape shape) {
+        return shape.collidesWith(mousePosition);
     }
 
     public boolean isPressed(MouseButton button) {

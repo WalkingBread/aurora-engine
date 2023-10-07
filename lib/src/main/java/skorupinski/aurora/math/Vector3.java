@@ -82,6 +82,13 @@ public class Vector3 {
         return (x * v.x) + (y * v.y) + (z * v.z);
     }
 
+    public Vector3 cross(Vector3 v) {
+        float x = y * v.z - z * v.y;
+        float y = z * v.x - x * v.z;
+        float z = x * v.y - y * v.x;
+        return new Vector3(x, y, z);
+    }
+
     public Vector3 normalize() {
         return new Vector3(
             x * (1 / getLength()),
